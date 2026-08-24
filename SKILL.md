@@ -1,6 +1,6 @@
 ---
 name: obsidian-curator
-description: 整理、重排并美化 Obsidian 笔记（markdown）。当用户要求整理笔记、美化或重排 markdown、为 Obsidian 笔记添加双链 wikilinks、标签 tags、callout、frontmatter 或外部链接时使用。Organize, restructure, and enrich Obsidian markdown notes with wikilinks, tags, callouts, frontmatter, and external links.
+description: 整理、重排并美化 Obsidian 笔记（markdown），或为笔记中不清楚的概念/术语打「解释补丁」。当用户要求整理笔记、美化或重排 markdown、为 Obsidian 笔记添加双链 wikilinks、标签 tags、callout、frontmatter、外部链接，或解释笔记中某个概念/术语时使用。Organize, restructure, and enrich Obsidian markdown notes with wikilinks, tags, callouts, frontmatter, and external links, or add a concise "clarification patch" explaining an unclear concept or term.
 ---
 
 # Obsidian Curator
@@ -12,7 +12,7 @@ description: 整理、重排并美化 Obsidian 笔记（markdown）。当用户�
 
 ## 核心原则（优先级最高）
 
-1. **不编造**：只重组、拆分、润色已有内容，绝不新增原文没有的事实、数据、例子或结论。
+1. **不编造**：只重组、拆分、润色已有内容，绝不新增原文没有的事实、数据、例子或结论。唯一例外是「概念补丁」（见下）：用户点名要解释某个概念时，可新增解释，但必须明确标注为补丁、且只讲公认定义。
 2. **层级克制**：正文只用 `##` / `###` 两级（极少数 `####`）；`#` 仅当笔记缺标题时补一个标题。不要多级嵌套、不要为了切分而切分。
 3. **长段落 → 短段落 + 无序列表**：把并列的要点、步骤、属性拆成 `- ` 列表，一句话讲一件事。
 4. **图片原样保留**：`![[...]]` 不动，就近放在相关段落旁，可补一行简短说明。
@@ -50,6 +50,36 @@ description: 整理、重排并美化 Obsidian 笔记（markdown）。当用户�
 ### 4. 外部链接
 - `[文字](url)` 只链接**公认官方文档**：Jenkins、Nginx、Sentry、PM2、GitHub Actions、CAP 定理等有官方站点的内容。
 - 拿不准的 URL 一律不加，绝不杜撰。
+
+## 概念补丁（按需解释概念/术语）
+
+整理完后，用户常会指着笔记里某句话问：「这里的『XX』是什么意思？」此时**不要重新整理整篇**，而是在**原句旁边打一个「补丁」**：用最简洁、通俗又严谨的话，把他问的那个概念讲清楚。
+
+### 补丁格式
+- 在原句**正下方**紧跟一个**默认折叠的 callout**，标题以 `补丁` 开头：
+  ```markdown
+  - 除了 IP 层还有**应用层**……
+    > [!question]- 补丁：IP 层 / 应用层是什么？
+    > 解释……
+  ```
+- 原句在列表里时，callout 缩进两个空格，保持列表不断开。
+- 用 `[!question]-`（`-` 表示默认折叠），不打断阅读、也不与正文混淆。
+
+### 解释怎么写
+1. **通俗但严谨**：先说「它负责什么 / 解决什么问题」，再用一两个类比或例子；概念边界必须准确，不因通俗而失真。
+2. **极简**：一般 2–4 句，只答用户问的那一个/几个概念，不展开无关内容。
+3. **只讲公认定义**：不编造、不臆测；是概括时点明「大致可以理解为……」，拿不准就说明是简化。
+4. **标注为补丁**：这是 Claude 新增的解释，与原文区分，方便用户日后删除或改回。
+5. 补丁里的概念若与本库其他笔记相关，顺手加 `[[双链]]`；否则不必。
+
+### 备选：脚注
+解释希望「不占正文」时，可用脚注：原词旁标 `[^1]`，解释放文末 `[^1]: ……`。
+默认仍用折叠 callout（离原句最近、自包含、一眼可见）。
+
+### 常见问题类型
+- 「XX 是什么」：一句话定义 + 它的职责/作用。
+- 「XX 和 YY 有什么区别」：一句话点出最关键差异，必要时用对照。
+- 「为什么需要 XX」：它解决什么痛点、没有它会怎样。
 
 ## 写回约定
 - 默认就地编辑原文件。
