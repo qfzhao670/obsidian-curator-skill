@@ -1,0 +1,73 @@
+# Obsidian Curator Skill
+
+一个给 **Codex** 和 **Claude** 共用的 agent skill，用来整理、重排、美化 Obsidian 笔记（markdown）。
+它把你的「有内容但缺结构」的笔记，整理成简洁、有条理的成品，并加上 Obsidian 特有的知识关联能力：
+内部双链 `[[wikilinks]]`、标签 + frontmatter、callout 摘要框、外部链接。
+
+## 它能做什么
+
+- 把长段落拆成短段落 + 无序列表，让结构一目了然。
+- 用克制的中文标题层级（H2/H3）组织知识，不花哨。
+- 保留图片嵌入 `![[...]]` 与 `==高亮==`。
+- 添加 YAML frontmatter（tags / aliases / source）与正文标签。
+- 为概念与其他笔记建立 `[[双链]]`，打通 Obsidian 的图视角与反向链接。
+- 为工具/概念补充官方文档外链（不杜撰 URL）。
+- 用 callout 框出关键结论（每篇最多 1–2 个）。
+
+## 目录结构
+
+```
+obsidian-curator-skill/
+├── SKILL.md                      # 主指令，Codex 与 Claude 都读这个文件
+├── README.md                     # 本文件
+└── references/
+    ├── formatting-guide.md       # Obsidian 语法速查 + 风格规则 + before/after 示例
+    └── example-curated-note.md   # 整理后的成品示例（可直接在 Obsidian 打开）
+```
+
+## 安装
+
+两种工具的 skill 都用同一套约定：一个文件夹 + `SKILL.md`（frontmatter 只需 `name` 和 `description`）。
+所以这一份 skill 两边通用，各自软链接过去即可。
+
+### 安装到 Claude Code
+
+用户级（所有项目可用）：
+
+```bash
+ln -s "$(pwd)/obsidian-curator-skill" ~/.claude/skills/obsidian-curator-skill
+```
+
+或项目级：把 `obsidian-curator-skill/` 文件夹放进目标项目的 `.claude/skills/` 下。
+
+### 安装到 Codex
+
+```bash
+ln -s "$(pwd)/obsidian-curator-skill" ~/.codex/skills/obsidian-curator-skill
+```
+
+（Codex 也支持项目级 `.agents/skills/`，同理放入即可。）
+
+> 注意：`ln -s` 的第二个参数要用**绝对路径**，否则软链接可能失效。
+
+## 用法
+
+装好后，直接对 agent 说：
+
+```text
+帮我整理 /Users/zhaoqifan/Code/obsidian notes/computer science/High Level Design 下的笔记
+```
+
+或指定单篇：
+
+```text
+整理这篇笔记，加上双链和 frontmatter：<路径/文件名.md>
+```
+
+也可以在请求里开关特性，例如「这次不要加外部链接」「只给 diff 不要改原文件」。
+
+## 风格说明
+
+- **简洁、有条理、不花哨**是默认风格。
+- 只重组/润色已有内容，**不编造**新知识、新事实。
+- 层级克制（H2/H3 为主），排版克制（表格、callout 都少量使用）。
