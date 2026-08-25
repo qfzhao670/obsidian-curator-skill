@@ -1,6 +1,6 @@
 ---
 name: obsidian-curator
-description: 整理、重排并美化 Obsidian 笔记（markdown），或为笔记中不清楚的概念/术语打「解释补丁」。当用户要求整理笔记、美化或重排 markdown、为 Obsidian 笔记添加双链 wikilinks、标签 tags、callout、frontmatter、外部链接，或解释笔记中某个概念/术语时使用。Organize, restructure, and enrich Obsidian markdown notes with wikilinks, tags, callouts, frontmatter, and external links, or add a concise "clarification patch" explaining an unclear concept or term.
+description: 整理、重排并美化 Obsidian 笔记（markdown），或为笔记中不清楚的概念/术语打「解释补丁」。当用户要求整理笔记、美化或重排 markdown、为 Obsidian 笔记添加双链 wikilinks、标签 tags、callout、frontmatter、外部链接，或解释笔记中某个概念/术语时使用。
 ---
 
 # Obsidian Curator
