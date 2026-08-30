@@ -11,6 +11,7 @@ description: 整理、重排并美化 Obsidian 笔记（markdown），为笔记�
 
 更详细的语法速查与成品示例见 `references/formatting-guide.md`；
 字幕生成笔记的完整流程与示例见 `references/subtitle-to-note.md`。
+（如果任务是字幕生成直接生成完整笔记，那么formatting-guide和subtitle-to-note都需要参考）
 
 ## 核心原则（优先级最高）
 
