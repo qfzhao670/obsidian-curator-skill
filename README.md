@@ -3,6 +3,7 @@
 一个给 **Codex** 和 **Claude** 共用的 agent skill，用来整理、重排、美化 Obsidian 笔记（markdown）。
 它把你的「有内容但缺结构」的笔记，整理成简洁、有条理的成品，并加上 Obsidian 特有的知识关联能力：
 内部双链 `[[wikilinks]]`、标签 + frontmatter、callout 摘要框、外部链接。
+它也能把一段视频课程字幕（含时间戳的原始讲稿，如 NoteGPT 导出的 `.txt`）直接生成一篇中文 Obsidian 笔记。
 
 ## 它能做什么
 
@@ -14,6 +15,7 @@
 - 为工具/概念补充官方文档外链（不杜撰 URL）。
 - 用 callout 框出关键结论（每篇最多 1–2 个）。
 - 在你对笔记里某个概念不清楚时，于原句旁打一个「解释补丁」（折叠 callout），用简洁通俗又严谨的话讲清楚。
+- 把一段视频课程字幕（含时间戳的原始讲稿）读入、切分、翻译，直接生成一篇结构清晰的中文 Obsidian 笔记。
 
 ## 目录结构
 
@@ -23,7 +25,8 @@ obsidian-curator-skill/
 ├── README.md                     # 本文件
 └── references/
     ├── formatting-guide.md       # Obsidian 语法速查 + 风格规则 + before/after 示例
-    └── example-curated-note.md   # 整理后的成品示例（可直接在 Obsidian 打开）
+    ├── example-curated-note.md   # 整理后的成品示例（可直接在 Obsidian 打开）
+    └── subtitle-to-note.md       # 视频字幕 → 中文笔记的流程与 before/after 示例
 ```
 
 ## 安装
@@ -71,6 +74,12 @@ ln -s "$(pwd)/obsidian-curator-skill" ~/.codex/skills/obsidian-curator-skill
 
 ```text
 帮我解释这句话里的「IP 层」和「应用层」是什么意思：<路径>/4.Networking.md
+```
+
+把视频字幕整理成中文笔记：
+
+```text
+把这段视频字幕整理成一篇中文 Obsidian 笔记：<路径>/NoteGPT_Introduction to Operating Systems.txt
 ```
 
 ## 风格说明
