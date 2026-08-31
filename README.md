@@ -21,12 +21,14 @@
 
 ```
 obsidian-curator-skill/
-├── SKILL.md                      # 主指令，Codex 与 Claude 都读这个文件
+├── SKILL.md                      # 主指令：先做功能分类，再分派到对应 reference（Codex 与 Claude 都读）
 ├── README.md                     # 本文件
 └── references/
-    ├── formatting-guide.md       # Obsidian 语法速查 + 风格规则 + before/after 示例
-    ├── example-curated-note.md   # 整理后的成品示例（可直接在 Obsidian 打开）
-    └── subtitle-to-note.md       # 视频字幕 → 中文笔记的流程与 before/after 示例
+    ├── curate-note.md            # 功能① 整理/美化笔记：核心原则 + 工作流程
+    ├── concept-patch.md          # 功能② 概念补丁：格式 + 解释写法（仅用户主动提问时用）
+    ├── subtitle-to-note.md       # 功能③ 视频字幕 → 中文笔记的流程与示例
+    ├── formatting-guide.md       # 共享：Obsidian 语法速查 + 特性用法规则 + before/after 示例
+    └── example-curated-note.md   # 功能① 的成品示例（可直接在 Obsidian 打开）
 ```
 
 ## 安装
@@ -56,7 +58,8 @@ ln -s "$(pwd)/obsidian-curator-skill" ~/.codex/skills/obsidian-curator-skill
 
 ## 用法
 
-装好后，直接对 agent 说：
+装好后，直接对 agent 说（skill 会先自动判断你的请求属于三个功能中的哪一个，再执行对应功能；
+三个功能互不混用，补丁只在你主动提问某概念时触发）：
 
 ```text
 帮我整理 /Users/zhaoqifan/Code/obsidian notes/computer science/High Level Design 下的笔记
